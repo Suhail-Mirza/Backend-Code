@@ -9,13 +9,13 @@ const socket = require('socket.io')
 const http = require('http')
 const server = http.createServer(app)
 app.use(cors({
-    origin : ['http://localhost:5173','http://localhost:5174'],
+    origin : process.env.mode==="pro"?[process.env.client_customer_production_url]:['http://localhost:5173','http://localhost:5174'],
     credentials: true
 }))
 
 const io = socket(server, {
     cors: {
-        origin: '*',
+        origin:process.env.mode==="pro"?[process.env.client_customer_production_url]:['http://localhost:5173','http://localhost:5174'],
         credentials: true
     }
 })
