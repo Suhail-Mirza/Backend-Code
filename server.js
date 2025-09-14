@@ -14,9 +14,11 @@ const allowedOrigins = process.env.mode === 'pro'
 
 app.use(cors({
 origin: function (origin, callback) {
-    console.log(process.env.client_customer_production_url);
-    console.log(allowedOrigins);
-    console.log(origin)
+    console.log(process.env.mode === 'pro');
+    console.log(process.env.mode === 'pro'
+? [process.env.client_customer_production_url, process.env.client_admin_production_url]
+: ['http://localhost:3000', 'http://localhost:3001']);
+    console.log(allowedOrigins)
     console.log("Checking cors config")
     console.log("ready")
     console.log(allowedOrigins[0]);
