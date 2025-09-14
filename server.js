@@ -14,6 +14,7 @@ const allowedOrigins = process.env.mode === 'pro'
 
 app.use(cors({
 origin: function (origin, callback) {
+    console.log(process.env.mode === 'pro');
     console.log(allowedOrigins);
     console.log(origin)
     console.log("Checking cors config")
