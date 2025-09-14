@@ -1,5 +1,5 @@
 const { responseReturn } = require("../../utilities/response") 
-const myShopWallet = require('../../models/myShopWallet')
+const myShopWallet = require('../../models/myshopWallet')
 const productModel = require('../../models/productModel')
 const customerOrder = require('../../models/customerOrder')
 const sellerModel = require('../../models/sellerModel') 

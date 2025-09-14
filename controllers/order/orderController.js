@@ -1,7 +1,7 @@
 const authOrderModel = require('../../models/authOrder')
 const customerOrder = require('../../models/customerOrder')
 
-const myShopWallet = require('../../models/myShopWallet')
+const myShopWallet = require('../../models/myshopWallet')
 const sellerWallet = require('../../models/sellerWallet')
 
 const cardModel = require('../../models/cardModel')
