@@ -8,17 +8,33 @@ const { dbConnect } = require('./utilities/db')
 const socket = require('socket.io')
 const http = require('http')
 const server = http.createServer(app)
+const allowedOrigins = process.env.mode === 'pro'
+? [process.env.client_customer_production_url, process.env.client_admin_production_url]
+: ['http://localhost:3000', 'http://localhost:3001'];
+
 app.use(cors({
-    origin : process.env.mode==="pro"?[process.env.client_customer_production_url,process.env.client_admin_production_url]:['http://localhost:5173','http://localhost:5174'],
-    credentials: true
-}))
+origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+    } else {
+        callback(new Error('Not allowed by CORS'));
+    }
+},
+credentials: true
+}));
 
 const io = socket(server, {
-    cors: {
-        origin:process.env.mode==="pro"?[process.env.client_customer_production_url,process.env.client_admin_production_url]:['http://localhost:5173','http://localhost:5174'],
-        credentials: true
-    }
-})
+cors: {
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    credentials: true
+}
+}); 
 
 var allCustomer = []
 var allSeller = []
