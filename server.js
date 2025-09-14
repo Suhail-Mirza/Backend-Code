@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express')
 const app = express()
 const cors = require('cors')
@@ -138,9 +139,6 @@ io.on('connection', (soc) => {
 
 
 })
-
-
-require('dotenv').config()
   
 
 app.use(bodyParser.json())
